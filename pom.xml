@@ -56,11 +56,24 @@
             <version>4.8.2</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Added Jackson Dependency -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.2.3</version>
+        </dependency>
     </dependencies>
 
     <build>
         <finalName>SpringDemo</finalName>
         <plugins>
+            <!-- Added Jetty plugin so I can run from inside intellij -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.2.2.v20140723</version>
+            </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
