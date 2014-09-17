@@ -1,11 +1,15 @@
 package com.springapp.mvc;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.springapp.mvc.Model.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.net.URL;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -36,4 +40,18 @@ public class HelloController {
         map.put("date", Calendar.getInstance().getTime().toString());
         return map;
     }
+
+    @RequestMapping(value="getOrder", method = RequestMethod.GET)
+    @ResponseBody
+    public Order getOrder() throws Exception {
+        final String url = "https://sleepy-eyrie-4425.herokuapp.com/getOrder";
+        // This creates a JSON object mapper
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        Order o =  mapper.readValue(new URL(url), Order.class);
+        System.out.println(o);
+        return o;
+    }
+
 }
